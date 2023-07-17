@@ -43,13 +43,13 @@ export const authOptions: NextAuthOptions = {
         return token
       }
 
-      if (!dbUser.userName) {
+      if (!dbUser.username) {
         await db.user.update({
           where: {
             id: dbUser.id,
           },
           data: {
-            userName: nanoid(10),
+            username: nanoid(10),
           },
         })
       }
@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
-        username: dbUser.userName,
+        username: dbUser.username,
       }
     },
     redirect() {
