@@ -30,7 +30,7 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
   
   
   const ref = useRef<Editorjs>();
-  const _titleref = useRef<HTMLTitleElement>(null);
+  const _titleref = useRef<HTMLTextAreaElement>(null);
   const pathName = usePathname()
   const router = useRouter()
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -129,6 +129,9 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
       content,
       subredditId
     }: PostCreationRequest) => {
+      console.log('this is being called');
+      
+      console.log(title,'title')
       const payload:PostCreationRequest = {
         title,
         content,
@@ -156,6 +159,8 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
   })
 
   async function onSubmit(data: PostCreationRequest) {
+    console.log('this is called');
+    
     const block = ref.current?.save();
 
     const payload:PostCreationRequest = {
@@ -169,7 +174,7 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
 
   return (
     <div className="w-full p-4 bg-zinc-50 rounded-lg border-zinc-200">
-      <form id="subreddit-post-form" className="w-fit" onSubmit={handleSubmit((e) => {})}>
+      <form id="subreddit-post-form" className="w-fit" onSubmit={handleSubmit(onSubmit)}>
         <div className="prose prose-stone dark:prose-invert">
           <TextareaAutosize
             ref = {(e) => {
@@ -177,6 +182,7 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
               // @ts-ignore
               _titleref.current = e;
             }}
+            {...rest}
             placeholder="Title"
             className="w-full resize-none appearence-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
           />
