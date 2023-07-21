@@ -3,6 +3,9 @@ import { formatDistanceToNow } from "date-fns";
 import { MessageSquare } from "lucide-react";
 import { FC, useRef } from "react";
 import EditorOutput from "./EditorOutput";
+import PostVoteClient from "./post-vote/PostVoteClient";
+
+type PartialVote = Pick<Vote, 'type'>
 
 interface PostProps {
   subredditName: string;
@@ -11,16 +14,18 @@ interface PostProps {
     vote: Vote[];
   };
   commentAmount: number
+  votesAmt: number
+  currentVote?: PartialVote
 }
 
-const Post: FC<PostProps> = ({subredditName, post, commentAmount}) => {
+const Post: FC<PostProps> = ({subredditName, post, commentAmount, votesAmt, currentVote}) => {
 
   const pRef =  useRef<HTMLDivElement>(null);
 
   return (
     <div className="rounded-md bg-white shadow">
       <div className="px-6 py-4 flex justify-between">
-        {/* To Votes */}
+        <PostVoteClient postId={post.id} initialVotesAmt={votesAmt} initialVote={currentVote?.type}/>
         <div className="w-0 flex-1">
           <div className="max-h-40 mt-1 text-xs text-gray-500">
             {

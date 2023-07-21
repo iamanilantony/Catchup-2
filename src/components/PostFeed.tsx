@@ -56,9 +56,17 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts = [], subredditName }) => {
           (vote: { userId: string | undefined; }) => vote.userId === session?.user.id
         )
 
-        return <div>
-          <Post subredditName={post.subreddit.name} post={post} commentAmount={post.comments.length}/>
-        </div>
+        if(index === post.length - 1){
+          return(
+            <li key={post.id} ref={ref}>
+              <Post subredditName={post.subreddit.name} post={post} commentAmount={post.comments.length} votesAmt={votesAmt} currentVote={currentVote}/>
+            </li>
+          )
+        }
+        else{
+          return <Post subredditName={post.subreddit.name} post={post} commentAmount={post.comments.length} votesAmt={votesAmt} currentVote={currentVote}/>
+      
+        }
 
       })}
     </ul>
