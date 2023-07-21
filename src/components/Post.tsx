@@ -14,9 +14,6 @@ interface PostProps {
 }
 
 const Post: FC<PostProps> = ({subredditName, post, commentAmount}) => {
-  console.log(process.env,'env')
-  console.log(post);
-  
 
   const pRef =  useRef<HTMLDivElement>(null);
 

@@ -28,15 +28,13 @@ const renderers = {
 };
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
-  console.log(content);
-
   return (
     <div>
       <Output
         data={content}
         style={style}
         className="text-sm"
-        // renderers={renderers}
+        renderers={renderers}
       />
     </div>
   );

@@ -43,10 +43,6 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts = [], subredditName }) => {
 
   const posts:ExtendedPost[] = data?.pages.flatMap((page) => page) ?? initialPosts;
 
-  // const posts = initialPosts;
-
-  // console.log([posts])
-
   return (
     <ul className="flex flex-col col-span-2 space-y-6">
       {posts?.map((post, index) => {

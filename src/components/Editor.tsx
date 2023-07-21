@@ -129,9 +129,7 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
       content,
       subredditId
     }: PostCreationRequest) => {
-      console.log('this is being called');
       
-      console.log(title,'title')
       const payload:PostCreationRequest = {
         title,
         content,
@@ -159,17 +157,17 @@ const Editor: FC<EditorProps> = ({ subredditId }) => {
   })
 
   async function onSubmit(data: PostCreationRequest) {
-    console.log('this is called');
     
-    const block = ref.current?.save();
+    const blocks = await ref.current?.save();
+
 
     const payload:PostCreationRequest = {
       title: data.title,
-      content: block,
+      content: blocks,
       subredditId
     } 
 
-    createPost(payload)
+     createPost(payload)
   }
 
   return (

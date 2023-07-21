@@ -38,7 +38,6 @@ const Layout = async ({
     }
   })
 
-  console.log(subscription)
 
   const isSubscribed = !!subscription;
 

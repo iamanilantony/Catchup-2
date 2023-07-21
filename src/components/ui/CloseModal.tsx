@@ -9,8 +9,6 @@ interface CloseModalProps {}
 
 const CloseModal: FC<CloseModalProps> = ({}) => {
   const router = useRouter();
-  console.log(router);
-
   return (
     <Button
       variant="subtle"
