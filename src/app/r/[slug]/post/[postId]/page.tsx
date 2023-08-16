@@ -25,7 +25,7 @@ const page = async ({ params }: pageProps) => {
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
 
   if (!cachedPost) {
-    post = db.post.findFirst({
+    post = await db.post.findFirst({
       where: {
         id: params.postId
       },
