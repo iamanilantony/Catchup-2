@@ -16,7 +16,10 @@ const nextConfig = {
     MONGODB_URI,
     SITEMAP_URL,
     API_BASEURL
-  }
+  },
+  experimental: {
+    appDir: true,
+  },
 }
 
 module.exports = nextConfig

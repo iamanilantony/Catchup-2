@@ -1,4 +1,4 @@
-import {IResponse} from "../interfaces/response.interface";
+import { IResponse } from "../interfaces/response.interface";
 import HeadSEO from "../components/HeadSEO";
 
 export async function getServerSideProps() {
@@ -13,7 +13,7 @@ export default function Home({ data }: { data: IResponse }) {
       <HeadSEO />
       <main>
         <h1 className="title">
-          Welcome to <a href="https://github.com/NurNils/nextjs-boilerplate">Next.js Boilerplate by NurNils</a>
+          App Route is working Welcome to <a href="#">CatchUp</a>
         </h1>
 
         {data ? (
@@ -21,42 +21,6 @@ export default function Home({ data }: { data: IResponse }) {
         ) : (
           <h2 className="subtitle">API with MongoDB is not working</h2>
         )}
-
-        <p className="description">
-          Get started by editing <code>pages/index.tsx</code> and <code>api/index.tsx</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer>
@@ -65,7 +29,7 @@ export default function Home({ data }: { data: IResponse }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
@@ -220,5 +184,5 @@ export default function Home({ data }: { data: IResponse }) {
         }
       `}</style>
     </div>
-  )
+  );
 }
