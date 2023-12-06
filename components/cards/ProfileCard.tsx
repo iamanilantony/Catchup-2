@@ -86,7 +86,7 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
               ></path>
             </svg>
           </span>
-          Mark all as read
+          Update Last call
         </Button>
       </CardFooter>
     </Card>
