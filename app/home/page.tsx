@@ -13,49 +13,67 @@ import { Input } from "../../components/ui/Input";
 import { Label } from "../../components/ui/Label";
 import { ProfileCard } from "../../components/cards/ProfileCard";
 
-const notifications = [
+const users = [
   {
-    title: "Your call has been confirmed.",
-    description: "1 hour ago"
+    name: "Anil Antony",
+    category: "Family",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Shruthi",
+    category: "Family",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Vinay Kumar",
+    category: "Work",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Ajay Babu",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Avinash Toppo",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Shubham Shinde",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Arjun Sineed",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Aadil Shah",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago"
+    name: "Vaishnav",
+    category: "Friends",
+    lastCaughtUp: "2 weeks Ago",
+    notes: "remind about the trip"
   }
 ];
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center w-9/12">
-      <div className="flex justify-between w-full">
+    <div className="min-h-screen flex flex-col justify-center items-center w-9/12 mt-6 mb-6">
+      <div className="flex justify-between w-full mb-8 mt-4">
         <h1 className="text-center mb-6 text-2xl font-bold">
           Hello, Dashboard Page!
         </h1>
@@ -99,8 +117,15 @@ export default function Page() {
         </div>
       </div>
       <div className="flex flex-wrap justify-between">
-        {notifications.map((not) => (
-          <ProfileCard />
+        {users.map((user) => (
+          <div className="mb-4">
+            <ProfileCard
+              name={user.name}
+              category={user.category}
+              lastCaughtUp={user.lastCaughtUp}
+              notes={user.notes}
+            />
+          </div>
         ))}
       </div>
     </div>
