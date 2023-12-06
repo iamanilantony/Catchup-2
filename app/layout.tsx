@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
+import HeadSEO from "../components/HeadSEO";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <HeadSEO />
+      <body>
+        <div className="min-h-screen flex flex-col justify-center text-white items-center bg-black">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
