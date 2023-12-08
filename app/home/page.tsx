@@ -1,5 +1,5 @@
 import { ProfileCard } from "../../components/cards/ProfileCard";
-import { AddUserModal } from "../../components/AddUserModal";
+import { AddUserModal } from "../../components/modals/AddUserModal";
 import users from "./data";
 
 export default function Page() {
