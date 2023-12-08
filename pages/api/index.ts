@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from '../../lib/dbConnect';
-import Recipe from "../../models/Recipe";
+import dbConnect from '@/lib/dbConnect';
+import Recipe from "@/models/Recipe";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { method } = req;

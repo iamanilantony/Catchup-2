@@ -1,6 +1,5 @@
 import Link from "next/link";
-// import HeadSEO from "../components/HeadSEO";
-import { buttonVariants } from "../components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "../styles/globals.css";
-import HeadSEO from "../components/HeadSEO";
+import "@/styles/globals.css";
+import HeadSEO from "@/components/HeadSEO";
 
 export const metadata: Metadata = {
   title: "Create Next App",
