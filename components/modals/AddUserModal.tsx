@@ -1,4 +1,4 @@
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -7,9 +7,9 @@ import {
   DialogTitle,
   DialogFooter,
   DialogTrigger
-} from "../ui/Dialog";
-import { Label } from "../ui/Label";
-import { Input } from "../ui/Input";
+} from "@/components/ui/Dialog";
+import { Label } from "@/components/ui/Label";
+import { Input } from "@/components/ui/Input";
 
 export const AddUserModal = () => {
   return (

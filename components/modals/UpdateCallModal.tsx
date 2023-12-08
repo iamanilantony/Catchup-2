@@ -1,4 +1,5 @@
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui/Button";
+import { CheckIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -7,15 +8,22 @@ import {
   DialogTitle,
   DialogFooter,
   DialogTrigger
-} from "../ui/Dialog";
-import { Label } from "../ui/Label";
-import { Input } from "../ui/Input";
+} from "@/components/ui/Dialog";
+import { Label } from "@/components/ui/Label";
+import { Input } from "@/components/ui/Input";
 
-export const UpdateCallModal = () => {
+type UpdateCallModalProps = {
+  className?: string;
+};
+
+export const UpdateCallModal = ({ className }: UpdateCallModalProps) => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button>Update Call</Button>
+      <DialogTrigger asChild className={className}>
+        <Button>
+          <CheckIcon className="mr-2" />
+          <span>Update Last Call</span>
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
