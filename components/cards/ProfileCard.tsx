@@ -27,10 +27,12 @@ const notifications = [
 type CardProps = React.ComponentProps<typeof Card>;
 
 type ProfileProps = {
-  name: String;
-  category: String;
-  lastCaughtUp: String;
-  notes: String;
+  name: string;
+  category: string;
+  lastCaughtUp: string;
+  notes: string;
+  image: string;
+  notification: boolean;
 };
 
 export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
@@ -43,18 +45,16 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
             <CardDescription>{props.category}</CardDescription>
           </div>
           <div>
-            <BellIcon className="cursor-pointer" />
+            {props.notification ? (
+              <BellIcon className="cursor-pointer" />
+            ) : (
+              <BellOff className="cursor-pointer" />
+            )}
           </div>
         </div>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <Image
-          src={"/char1/expr1.webp"}
-          width="200"
-          height="200"
-          alt="animoji"
-        />
-
+        <Image src={props.image} width="200" height="200" alt="animoji" />
         <div>
           <div className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0">
             <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
