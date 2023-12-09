@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "lucide-react";
 import {
@@ -11,12 +13,20 @@ import {
 } from "@/components/ui/Dialog";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
+import { useState } from "react";
+import { Calendar } from "../ui/calendar";
 
 type UpdateCallModalProps = {
   className?: string;
 };
 
 export const UpdateCallModal = ({ className }: UpdateCallModalProps) => {
+  const [dateTime, setDateTime] = useState("");
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const handleDateTimeChange = (event: any) => {
+    const value = event.target.value;
+    setDateTime(value);
+  };
   return (
     <Dialog>
       <DialogTrigger asChild className={className}>
@@ -32,16 +42,21 @@ export const UpdateCallModal = ({ className }: UpdateCallModalProps) => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
+            <Label htmlFor="username" className="text-right">
+              Select Date
             </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              className="rounded-md"
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
+            <Label htmlFor="name" className="text-right">
+              Notes
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Input id="name" value="Pedro Duarte" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
