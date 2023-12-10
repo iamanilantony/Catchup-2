@@ -1,7 +1,32 @@
-import mongoose from 'mongoose';
+import {Document, Schema, models, model} from 'mongoose';
 
-/* RecipeSchema will correspond to the recipe collection in the MongoDB database. */
-const RecipeSchema = new mongoose.Schema({
+export interface Ingredients{
+    amount?: number
+    type?: string
+    name: string
+    ref?: string
+}
+
+export interface RecipeDocument extends Document{
+    id: string,
+    type: string,
+    title: string,
+    author: string,
+    date: string,
+    idTiktok: string,
+    idInstagram: string,
+    idYoutube: string,
+    description: string,
+    tags: string,
+    durationCook: Number,
+    durationWork: Number,
+    difficulty: string,
+    portions: string,
+    ingredients: Ingredients,
+    content: string
+} 
+
+const RecipeSchema = new Schema({
     id: {
         type: String,
         required: true,
@@ -76,4 +101,4 @@ const RecipeSchema = new mongoose.Schema({
     content: { type: String, required: true }
 });
 
-export default mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
+export default models.Recipe || model<RecipeDocument>('Recipe', RecipeSchema);

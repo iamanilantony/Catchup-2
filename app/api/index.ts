@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '@/lib/dbConnect';
-import Recipe from "@/models/Recipe";
+import Recipe,  { RecipeDocument }  from "@/models/Recipe";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { method } = req;
@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (method) {
         case 'GET':
             try {
-                const recipes = await Recipe.find({});
+                const recipes: RecipeDocument[]  = await (Recipe as any).find({}) as RecipeDocument[];
                 res.status(200).json({ status: 'success', data: recipes });
             } catch (e) {
                 console.error(e);
