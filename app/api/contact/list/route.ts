@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '@/lib/dbConnect';
-import Recipe,  { RecipeDocument }  from "@/models/Recipe";
+import Contact,  { ContactDocument }  from "@/models/Contact";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
     const { method } = req;
 
     await dbConnect();
@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         case 'GET':
             try {
                 //test
-                const recipes: RecipeDocument[]  = await (Recipe as any).find({}) as RecipeDocument[];
+                const recipes: ContactDocument[]  = await (Contact as any).find({}) as ContactDocument[];
                 res.status(200).json({ status: 'success', data: recipes });
             } catch (e) {
                 console.error(e);
@@ -24,4 +24,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             break;
     }
 }
-
