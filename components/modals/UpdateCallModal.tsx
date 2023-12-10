@@ -14,7 +14,7 @@ import {
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
 import { useState } from "react";
-import { Calendar } from "../ui/calendar";
+import { Calendar } from "@/components/ui/Calendar";
 
 type UpdateCallModalProps = {
   className?: string;
