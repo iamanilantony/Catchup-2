@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (method) {
         case 'GET':
             try {
+                //test
                 const recipes: RecipeDocument[]  = await (Recipe as any).find({}) as RecipeDocument[];
                 res.status(200).json({ status: 'success', data: recipes });
             } catch (e) {
