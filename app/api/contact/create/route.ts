@@ -1,19 +1,22 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from '@/lib/dbConnect';
-import Contact,  { ContactDocument }  from "@/models/Contact";
+import connectDB from "@/lib/dbNativeConnect";
+import { ContactValidator } from "@/lib/validators/contact";
+import { NextResponse } from "next/server";
 
-export async function POST() {
-    const res = await fetch('https://data.mongodb-api.com/...', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'API-Key': process.env.DATA_API_KEY!,
-      },
-      body: JSON.stringify({ time: new Date().toISOString() }),
-    })
-   
-    const data = await res.json()
-   
-    return data
+export async function POST(req: Request, res: Response) {
+  const db = await connectDB();
+  const body = await req.json();
+
+  const { name, relationship, duration } = ContactValidator.parse(body);
+  console.log(name, relationship, duration);
+
+  try {
+    const contact = await db
+      .collection("contacts")
+      .insertOne({ name, relationship, duration });
+    console.log(contact);
+    return new Response("added contact", { status: 200 });
+  } catch (e) {
+    console.error(e);
+    return new Response("Failed to add contact", { status: 404 });
   }
-
+}

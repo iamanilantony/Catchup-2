@@ -2,9 +2,9 @@ import {Document, Schema, models, model} from 'mongoose';
 
 export interface ContactDocument extends Document{
     id: string,
-    type: string,
-    title: string,
-    author: string,
+    name: string,
+    relationship: string,
+    duration: string,
 } 
 
 const ContactSchema = new Schema({
@@ -23,7 +23,7 @@ const ContactSchema = new Schema({
     },
     duration: {
         type: String,
-        enum: ['weekly', 'bi-weekly', 'monthly', 'bi-monthly', 'quarterly', 'semi-annually'],
+        enum: ['daily','every-other-day','every-three-day','weekly', 'bi-weekly', 'monthly', 'bi-monthly', 'quarterly', 'semi-annually'],
         required: true,
         default: 'monthly',
     },
