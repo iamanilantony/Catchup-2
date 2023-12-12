@@ -1,11 +1,19 @@
+"use client";
+
 import { ProfileCard } from "@/components/cards/ProfileCard";
 import { AddUserModal } from "@/components/modals/AddUserModal";
+import { Button } from "@/components/ui/Button";
+import { signIn } from "next-auth/react";
 import users from "./data";
 
 export default function Page() {
+  const loginWithGoogle = async () => {
+    await signIn("google");
+  };
   return (
     <div className="min-h-screen flex flex-col justify-center items-center w-9/12 mt-6 mb-6">
       <div className="flex justify-between w-full mb-8 mt-4">
+        <Button onClick={loginWithGoogle}>Login</Button>
         <h1 className="text-center mb-6 text-2xl font-bold">
           Hello, Dashboard Page!
         </h1>
