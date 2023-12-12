@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "@/lib/dbConnect";
+import dbConnect from "@/lib/db/dbConnect";
 import Contact, { ContactDocument } from "@/models/Contact";
-import connectToMongoDB from "@/lib/dbNativeConnect";
+import connectToMongoDB from "@/lib/db/dbNativeConnect";
 
 export async function GET(req: Request, res: NextApiResponse) {
   const db = await connectToMongoDB();

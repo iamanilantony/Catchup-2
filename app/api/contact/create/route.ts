@@ -1,4 +1,4 @@
-import connectDB from "@/lib/dbNativeConnect";
+import connectDB from "@/lib/db/dbNativeConnect";
 import { ContactValidator } from "@/lib/validators/contact";
 import { NextResponse } from "next/server";
 import { z } from "zod";
