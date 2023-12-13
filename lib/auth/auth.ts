@@ -3,7 +3,6 @@ import { getServerSession, NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import connectToMongoDB from "@/lib/db/dbAdaptor";
 import dbOptions from "./dbAuthOptions";
-const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 import connectMongoDB from "../db/dbNativeConnect";
 import { nanoid } from "nanoid";
 
@@ -15,6 +14,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/sign-in"
   },
+  secret: "nosecret",
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -22,33 +22,30 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async session({ token, session }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        session.user.userName = token.userName;
+    async session({ token, user }) {
+      if (user) {
+        return {
+          ...token,
+          expires: new Date("2024 Dec 12").toISOString()
+        };
       }
 
-      return session;
+      return token;
     },
 
-    async jwt({ token, user }) {
+    async jwt({ token }) {
       const db = await connectMongoDB();
-      const dbUser = await db
-        .collection("users")
-        .findOne({ userName: token.userName });
+      const dbUser = await db.collection("users").findOne({ _id: token.id });
 
       if (!dbUser) {
-        token.id = user!.id;
+        token.id = token!.id;
         return token;
       }
 
       if (!dbUser.username) {
         await db.collection("user").updateOne(
           {
-            id: dbUser.id
+            _id: dbUser.id
           },
           {
             $set: {
@@ -63,7 +60,8 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
-        userName: dbUser.username
+        userName: dbUser.username,
+        expires: new Date("2024 Dec 12").toISOString()
       };
     },
     redirect() {
