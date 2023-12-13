@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 import React from "react";
-import SignIn from "./SignIn";
-import { Button } from "./ui/Button";
+import { buttonVariants } from "./ui/Button";
 
 export default async function Navbar() {
   const session = await getServerSession();
@@ -9,9 +9,13 @@ export default async function Navbar() {
     <div className="fixed top-0 w-9/12 py-4">
       <div className="flex justify-between">
         <div className=" text-2xl">
-          <span className="font-bold">Catch</span>up
+          <Link href={"/"}>
+            <span className="font-bold">Catch</span>up
+          </Link>
         </div>
-        <SignIn />
+        <Link href={"/sign-in"} className={buttonVariants()}>
+          SignIn
+        </Link>
       </div>
     </div>
   );
