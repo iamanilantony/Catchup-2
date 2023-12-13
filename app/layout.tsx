@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import HeadSEO from "@/components/HeadSEO";
+import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/Toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +19,10 @@ export default function RootLayout({
       <HeadSEO />
       <body>
         <div className="min-h-screen flex flex-col justify-center text-white items-center bg-black">
+          {/* @ts-expect-error Server Component */}
+          <Navbar />
           {children}
+          <Toaster />
         </div>
       </body>
     </html>

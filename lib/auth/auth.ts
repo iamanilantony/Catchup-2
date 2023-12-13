@@ -1,5 +1,5 @@
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import { NextAuthOptions } from "next-auth";
+import { getServerSession, NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import connectToMongoDB from "@/lib/db/dbAdaptor";
 import dbOptions from "./dbAuthOptions";
@@ -71,3 +71,5 @@ export const authOptions: NextAuthOptions = {
     }
   }
 };
+
+export const getAuthSession = () => getServerSession(authOptions);

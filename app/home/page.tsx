@@ -1,40 +1,49 @@
-"use client";
+import { getAuthSession } from "@/lib/auth/auth";
+import Dashboard from "@/components/Dashboard";
+import SignIn from "@/components/SignIn";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/Button";
+import Image from "next/image";
 
-import { ProfileCard } from "@/components/cards/ProfileCard";
-import { AddUserModal } from "@/components/modals/AddUserModal";
-import { Button } from "@/components/ui/Button";
-import { signIn } from "next-auth/react";
-import users from "./data";
-
-export default function Page() {
-  const loginWithGoogle = async () => {
-    await signIn("google");
-  };
+export default async function Page() {
+  const user = await getAuthSession();
+  console.log(user);
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center w-9/12 mt-6 mb-6">
-      <div className="flex justify-between w-full mb-8 mt-4">
-        <Button onClick={loginWithGoogle}>Login</Button>
-        <h1 className="text-center mb-6 text-2xl font-bold">
-          Hello, Dashboard Page!
-        </h1>
-        <div className="flex flex-col">
-          <AddUserModal />
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-between">
-        {users.map((user) => (
-          <div className="mb-4">
-            <ProfileCard
-              name={user.name}
-              category={user.category}
-              lastCaughtUp={user.lastCaughtUp}
-              notes={user.notes}
-              image={user.image}
-              notification={user.notification}
+    <div>
+      {!user ? (
+        <div className="flex flex-col justify-center items-center">
+          <h1 className="font-bold text-4xl">CatchUp</h1>
+          <p className="w-80 text-center text-sm my-4">
+            An app for quick reminders to stay connected with your closest
+            personal and professional contacts
+          </p>
+          <div className="flex my-4">
+            <Image
+              src="/char1/expr1.webp"
+              width="200"
+              height="200"
+              alt="animoji"
+            />
+            <Image
+              src="/char2/expr2.webp"
+              width="200"
+              height="200"
+              alt="animoji"
+            />
+            <Image
+              src="/char3/expr1.webp"
+              width="200"
+              height="200"
+              alt="animoji"
             />
           </div>
-        ))}
-      </div>
+          {/* <div>Login to Start Catching up</div> */}
+        </div>
+      ) : (
+        <div className="min-h-screen flex flex-col justify-center items-center w-9/12 mt-6 mb-6">
+          <Dashboard />
+        </div>
+      )}
     </div>
   );
 }
