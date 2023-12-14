@@ -1,12 +1,11 @@
-import { authOptions, getAuthSession } from "@/lib/auth/auth";
-import { getServerSession } from "next-auth";
+import { getAuthSession } from "@/lib/auth/auth";
 import Link from "next/link";
 import React from "react";
-import { buttonVariants } from "./ui/Button";
+import UserAccountNav from "@/components/UserAccountNav";
+import { buttonVariants } from "@/components/ui/Button";
 
 export default async function Navbar() {
   const session = await getAuthSession();
-  console.log(session);
   return (
     <div className="fixed top-0 w-9/12 py-4">
       <div className="flex justify-between">
@@ -16,7 +15,7 @@ export default async function Navbar() {
           </Link>
         </div>
         {session ? (
-          <div>Perplexity</div>
+          <UserAccountNav picture={session.picture} />
         ) : (
           <Link href={"/sign-in"} className={buttonVariants()}>
             SignIn
