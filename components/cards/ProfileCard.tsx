@@ -3,7 +3,6 @@ import { BellIcon, BellOff } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/components/lib/utils";
 import { UpdateCallModal } from "@/components/modals/UpdateCallModal";
-import { Button } from "@/components/ui/Button";
 import {
   Card,
   CardContent,
