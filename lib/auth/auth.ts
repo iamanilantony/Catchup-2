@@ -22,13 +22,14 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async session({ token, user }) {
-      if (user) {
-        return {
-          ...token,
-          expires: new Date("2024 Dec 12").toISOString()
-        };
-      }
+    async session({ token }) {
+      // if (user) {
+      return {
+        ...token,
+        image: token.picture,
+        expires: new Date("2024 Dec 12").toISOString()
+        // };
+      };
 
       return token;
     },
