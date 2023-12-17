@@ -17,11 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <HeadSEO />
-      <body>
-        <div className="min-h-screen flex flex-col justify-center text-white items-center bg-black">
+      <body className="bg-black">
+        <div className="min-h-screen flex flex-col justify-center text-white items-center">
           {/* @ts-expect-error Server Component */}
           <Navbar />
-          {children}
+          <div className="mt-10">{children}</div>
           <Toaster />
         </div>
       </body>

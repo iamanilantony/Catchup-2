@@ -7,7 +7,7 @@ import { buttonVariants } from "@/components/ui/Button";
 export default async function Navbar() {
   const session = await getAuthSession();
   return (
-    <div className="fixed top-0 w-9/12 py-4">
+    <div className="fixed top-0 w-9/12 py-4 bg-black">
       <div className="flex justify-between">
         <div className=" text-2xl">
           <Link href={"/"}>
