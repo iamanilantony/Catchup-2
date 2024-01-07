@@ -35,7 +35,7 @@ export const UpdateCallModal = ({ className }: UpdateCallModalProps) => {
           <span>Update Last Call</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-white">
         <DialogHeader>
           <DialogTitle>Add FollowUp</DialogTitle>
           <DialogDescription>Create your FollowUp</DialogDescription>
