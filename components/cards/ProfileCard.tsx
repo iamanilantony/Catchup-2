@@ -1,5 +1,4 @@
-import { BellIcon, BellOff } from "lucide-react";
-
+import { BellIcon, BellOff } from "lucide-react"
 import Image from "next/image";
 import { cn } from "@/components/lib/utils";
 import { UpdateCallModal } from "@/components/modals/UpdateCallModal";
@@ -11,7 +10,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/Card";
-
+import dateFormat from "dateformat";
 type CardProps = React.ComponentProps<typeof Card>;
 
 type ProfileProps = {
@@ -25,7 +24,7 @@ type ProfileProps = {
 
 export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
+    <Card className={cn("w-[380px] m-4", className)} {...props}>
       <CardHeader>
         <div className="flex justify-between">
           <div>
@@ -48,7 +47,7 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
             <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
             <div className="space-y-1">
               <p className="text-sm font-medium leading-none">
-                {props.lastCaughtUp}
+                {dateFormat(props.lastCaughtUp, "fullDate")}
               </p>
               <p className="text-sm text-muted-foreground">{props.notes}</p>
             </div>
