@@ -9,6 +9,8 @@ declare module "next-auth/jwt" {
     userName: string | null;
     expires: string;
     picture: string;
+    jti: string;
+    accessToken: string;
   }
 }
 
@@ -21,5 +23,7 @@ declare module "next-auth" {
       picture: string;
     };
     picture: string;
+    jti: string;
+    accessToken: string;
   }
 }
