@@ -23,21 +23,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      console.log(session, token, "misti");
-      return {
-        ...token,
-        userId: token.id,
-        image: token.picture,
-        expires: new Date("2024 Dec 12").toISOString(),
-      };
-      return token;
-    },
-
-    async jwt({ token, user }) {
-      console.log(token, user, "alla");
+    async jwt({ token }) {
       const db = await connectMongoDB();
       const dbUser = await db
         .collection("users")
@@ -59,20 +45,15 @@ export const authOptions: NextAuthOptions = {
           }
         );
       }
-      if (user) {
-        token.accessToken = user.access_token;
-        token.id = user.id;
-      }
-      console.log(token);
-      return {
-        id: dbUser._id.toHexString(),
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-        userName: dbUser.username,
-        expires: new Date("2024 Dec 12").toISOString(),
-        sessionToken: token.jti,
-      };
+
+      token.accessToken = token.jti;
+      token.id = dbUser._id.toHexString();
+      return token
+    },
+    async session({ session, token }) {
+      session.accessToken = token.jti;
+      session.user.id = token.id;
+      return session
     },
     redirect() {
       return "/";
@@ -80,4 +61,4 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export const getAuthSession = () => getServerSession(authOptions);
+export const getAuthSession = (req) => getServerSession(req ? req : authOptions);

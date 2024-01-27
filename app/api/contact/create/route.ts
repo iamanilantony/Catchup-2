@@ -6,15 +6,20 @@ import { z } from "zod";
 import connectDB from "@/lib/db/dbNativeConnect";
 import { ObjectId } from "mongodb";
 import avatars from "@/data/avatars";
-import { getAuthSession } from "@/lib/auth/auth";
-// import { getServerSession } from "next-auth";
+import { authOptions, getAuthSession } from "@/lib/auth/auth";
+import { getServerSession } from "next-auth";
+import  geSession  from "next-auth";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function POST(req: Request, res: Response) {
-  const body = await req.json();
-  const { name, relationship, duration } = ContactValidator.parse(body);
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  // const body = await req.json();
+  const { name, relationship, duration } = {};
   try {
     const db = await connectDB();
-    const session = await getAuthSession();
+    // const { getUser } = getKindeServerSession();
+    // const session2 = await geSession(req, res, authOptions);
+    // console.log(session2)
+    const session = await getServerSession(authOptions);
     console.log(session, "minimini");
     const _id = new ObjectId();
     const index = Math.floor(Math.random() * 11);
