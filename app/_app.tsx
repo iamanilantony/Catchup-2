@@ -6,9 +6,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <main>
-      <Providers>
+      {/* <Providers> */}
         <Component {...pageProps} />
-      </Providers>
+      {/* </Providers> */}
       </main>
     </>
   );
