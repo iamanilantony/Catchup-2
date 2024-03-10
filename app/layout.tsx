@@ -22,9 +22,9 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col justify-center text-white items-center">
           {/* @ts-expect-error Server Component */}
           <Navbar />
-      {/* <Providers> */}
-          <div className="mt-10">{children}</div>
-      {/* </Providers> */}
+          <Providers>
+            <div className="mt-10">{children}</div>
+          </Providers>
           <Toaster />
         </div>
       </body>
