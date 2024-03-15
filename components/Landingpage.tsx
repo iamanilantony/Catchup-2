@@ -18,12 +18,32 @@ const LandingPage = () => {
         <Image src="/char3/expr1.webp" width={200} height={200} alt="animoji" />
       </div>
       {session && (
-        <Link
-          href={"/home"}
-          className={buttonVariants({ variant: "secondary" })}
-        >
-          Go to Dashboard
-        </Link>
+        <div className="flex justify-between w-[26rem]">
+          <Link
+            href={"/home"}
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            CatchUp
+          </Link>
+          <Link
+            href={"/home"}
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            To Do
+          </Link>
+          <Link
+            href={"/home"}
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            Break Up
+          </Link>
+          <Link
+            href={"/home"}
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            Habit Tracker
+          </Link>
+        </div>
       )}
     </div>
   );
