@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import HeadSEO from "@/components/HeadSEO";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/Toaster";
+import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +22,9 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col justify-center text-white items-center">
           {/* @ts-expect-error Server Component */}
           <Navbar />
-          <div className="mt-10">{children}</div>
+          <Providers>
+            <div className="mt-10">{children}</div>
+          </Providers>
           <Toaster />
         </div>
       </body>
