@@ -1,4 +1,4 @@
-import { BellIcon, BellOff } from "lucide-react"
+import { BellIcon, BellOff, GripVertical } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/components/lib/utils";
 import { UpdateCallModal } from "@/components/modals/UpdateCallModal";
@@ -16,7 +16,7 @@ type CardProps = React.ComponentProps<typeof Card>;
 type ProfileProps = {
   name: string;
   category: string;
-  lastCaughtUp: string;
+  lastcaughtup: string;
   notes: string;
   image: string;
   notification: boolean;
@@ -35,7 +35,8 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
             {props.notification ? (
               <BellIcon className="cursor-pointer" />
             ) : (
-              <BellOff className="cursor-pointer" />
+              <GripVertical className="cursor-pointer" />
+              // <BellOff className="cursor-pointer" />
             )}
           </div>
         </div>
@@ -47,9 +48,11 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
             <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
             <div className="space-y-1">
               <p className="text-sm font-medium leading-none">
-                {dateFormat(props.lastCaughtUp, "fullDate")}
+                {dateFormat(props.lastcaughtup, "fullDate")}
               </p>
-              <p className="text-sm text-muted-foreground">{props.notes}</p>
+              <p className="text-sm text-muted-foreground">
+                {props.notes ? props.notes : "No notes"}
+              </p>
             </div>
           </div>
         </div>

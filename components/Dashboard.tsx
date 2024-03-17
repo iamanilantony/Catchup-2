@@ -20,8 +20,8 @@ export default async function Dashboard() {
           <div className="mb-4">
             <ProfileCard
               name={user.name}
-              category={user.relationship}
-              lastCaughtUp={user.lastContacted}
+              category={user.relation}
+              lastcaughtup={user.lastContacted}
               notes={user.notes}
               image={user.avatar}
               notification={user.notification}

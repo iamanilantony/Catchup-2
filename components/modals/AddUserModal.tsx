@@ -33,27 +33,28 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/Radio-group";
 import categoriesData from "@/data/categories";
 import frequencyData from "@/data/callFrequency";
+import {
+  ContactCreationRequest,
+  ContactValidator
+} from "@/lib/validators/contact";
 
-const relationValues = categoriesData.map((c) => c.code) as [
-  string,
-  ...string[]
-];
-const callFrequency = frequencyData.map((f) => f.code) as [string, ...string[]];
-
-const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  relation: z.enum(relationValues),
-  callFrequency: z.enum(callFrequency)
-});
-
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
+function onSubmit(values: ContactCreationRequest) {
+  fetch("/api/contact/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(values)
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.error("Error", err));
 }
 
 export const AddUserModal = () => {
   const [name, setName] = useState("");
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactCreationRequest>({
+    resolver: zodResolver(ContactValidator),
     defaultValues: {
       name: "",
       callFrequency: "monthly",
