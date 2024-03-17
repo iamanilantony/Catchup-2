@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { buttonVariants } from "./ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 
 const LandingPage = () => {
   const session = getAuthSession();
