@@ -1,4 +1,4 @@
-import { BellIcon, BellOff, GripVertical } from "lucide-react";
+import { BellIcon, BellOff, Trash2, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/components/lib/utils";
 import { UpdateCallModal } from "@/components/modals/UpdateCallModal";
@@ -11,6 +11,14 @@ import {
   CardTitle
 } from "@/components/ui/Card";
 import dateFormat from "dateformat";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/Popover";
+import { Separator } from "@/components/ui/Separator";
+import { AlertModal } from "../modals/AlertModal";
+
 type CardProps = React.ComponentProps<typeof Card>;
 
 type ProfileProps = {
@@ -20,6 +28,10 @@ type ProfileProps = {
   notes: string;
   image: string;
   notification: boolean;
+};
+
+const hDelete = () => {
+  console.log("Delete " + name);
 };
 
 export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
@@ -35,8 +47,25 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
             {props.notification ? (
               <BellIcon className="cursor-pointer" />
             ) : (
-              <GripVertical className="cursor-pointer" />
-              // <BellOff className="cursor-pointer" />
+              <Popover>
+                <PopoverTrigger>
+                  <SlidersHorizontal className="cursor-pointer w-4" />
+                </PopoverTrigger>
+                <PopoverContent className="w-12 h-24">
+                  <BellOff className="cursor-pointer mb-2 w-4" />
+                  <Separator />
+                  <AlertModal
+                    trigger={
+                      <Trash2 className="cursor-pointer mt-2 w-4 text-red-600" />
+                    }
+                    title="Are you sure ?"
+                    desc={`Do you wish to delete ${props.name}'s profile`}
+                    button="Delete"
+                    buttonType="destructive"
+                    onTrigger={hDelete}
+                  />
+                </PopoverContent>
+              </Popover>
             )}
           </div>
         </div>

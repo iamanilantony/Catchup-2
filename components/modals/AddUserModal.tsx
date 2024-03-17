@@ -7,7 +7,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
   DialogTrigger
 } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
@@ -52,7 +51,6 @@ function onSubmit(values: ContactCreationRequest) {
 }
 
 export const AddUserModal = () => {
-  const [name, setName] = useState("");
   const form = useForm<ContactCreationRequest>({
     resolver: zodResolver(ContactValidator),
     defaultValues: {
@@ -64,7 +62,7 @@ export const AddUserModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Click Here</Button>
+        <Button>Add Contact</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-white">
         <DialogHeader>
