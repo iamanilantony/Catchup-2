@@ -1,5 +1,5 @@
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import { NextApiRequest } from 'next';
+import { NextApiRequest as Request } from "next";
 import { getServerSession } from 'next-auth';
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from "next-auth/providers/google";
@@ -63,4 +63,4 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export const getAuthSession = (req?: NextApiRequest) => getServerSession(req ? req : authOptions);
+export const getAuthSession = (req?: Request) => getServerSession(req ? req : authOptions);
