@@ -1,10 +1,9 @@
 import { ProfileCard } from "@/components/cards/ProfileCard";
 import { AddUserModal } from "@/components/modals/AddUserModal";
 import connectToMongoDB from "@/lib/db/dbNativeConnect";
-import { useQuery } from "@tanstack/react-query";
 
 export default async function Dashboard() {
-  const db = await connectToMongoDB()
+  const db = await connectToMongoDB();
   const users = await db.collection("contacts").find({}).toArray();
   return (
     <div className="min-h-screen flex flex-col justify-center items-center w-9/12 mt-6 mb-6">

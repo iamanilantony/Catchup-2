@@ -9,9 +9,9 @@ import avatars from "@/data/avatars";
 import { authOptions, getAuthSession } from "@/lib/auth/auth";
 import { getServerSession } from "next-auth";
 import  geSession  from "next-auth";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   // const body = await req.json();
   // const { name, relationship, duration } = {};
   // try {

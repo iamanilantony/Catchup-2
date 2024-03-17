@@ -10,6 +10,7 @@ export default async function Page() {
         <LandingPage />
       ) : (
         <div className="min-h-screen flex flex-col justify-center items-center w-full mt-6 mb-6">
+          {/* @ts-expect-error Server Component */}
           <Dashboard />
         </div>
       )}
