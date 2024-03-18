@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import HeadSEO from "@/components/HeadSEO";
 import Navbar from "@/components/Navbar";
-import { Toaster } from "@/components/ui/Toaster";
+// import { Toaster } from "@/components/ui/Toaster";
 import Providers from "@/components/Providers";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
