@@ -19,6 +19,7 @@ export default async function Dashboard() {
         {users.map((user) => (
           <div className="mb-4">
             <ProfileCard
+              id={user._id.toString()}
               name={user.name}
               category={user.relation}
               lastcaughtup={user.lastContacted}
