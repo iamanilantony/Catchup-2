@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,9 +12,12 @@ import {
   AlertDialogTrigger
 } from "@/components/ui/Alert-dialog";
 import { ReactNode } from "react";
-import { buttonVariants } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
+import axios from "axios";
+import { toast } from "sonner";
 
 type AlertModalProps = {
+  id: string;
   trigger?: ReactNode | string;
   title?: string;
   desc?: string;
@@ -24,10 +29,23 @@ type AlertModalProps = {
     | "outline"
     | "secondary"
     | "ghost";
-  onTrigger: () => void;
 };
 
 export const AlertModal = (props: AlertModalProps) => {
+  const hDelete = async () => {
+    console.log("triggered");
+    try {
+      const response = await axios.delete("/api/contact/delete", {
+        data: {
+          contactId: props.id
+        }
+      });
+      if (response.status === 200) toast("contact has been deleted");
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  };
   return (
     <AlertDialog>
       <AlertDialogTrigger>{props.trigger}</AlertDialogTrigger>
@@ -46,10 +64,11 @@ export const AlertModal = (props: AlertModalProps) => {
             className={buttonVariants({
               variant: props.buttonType ? props.buttonType : "default"
             })}
-            // onClick={() => props.onTrigger()}
+            onClick={hDelete}
           >
             {props.button ? props.button : "Continue"}
           </AlertDialogAction>
+          {/* <Button /> */}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

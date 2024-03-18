@@ -18,20 +18,16 @@ import {
 } from "@/components/ui/Popover";
 import { Separator } from "@/components/ui/Separator";
 import { AlertModal } from "../modals/AlertModal";
-
 type CardProps = React.ComponentProps<typeof Card>;
 
 type ProfileProps = {
+  id: string;
   name: string;
   category: string;
   lastcaughtup: string;
   notes: string;
   image: string;
   notification: boolean;
-};
-
-const hDelete = () => {
-  console.log("Delete " + name);
 };
 
 export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
@@ -62,7 +58,7 @@ export function ProfileCard({ className, ...props }: CardProps & ProfileProps) {
                     desc={`Do you wish to delete ${props.name}'s profile`}
                     button="Delete"
                     buttonType="destructive"
-                    onTrigger={hDelete}
+                    id={props.id}
                   />
                 </PopoverContent>
               </Popover>
